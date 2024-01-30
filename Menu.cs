@@ -6,45 +6,46 @@ namespace EditorHtml
     {
         public static void Show()
         {
+            Console.Clear();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Black;
 
             DrawScreen();
             WriteOptions();
 
-            var option = int.Parse(Console.ReadLine());
-            HandleMenuOption(option);
+            var option = short.Parse(Console.ReadLine());
+            HandleMenuOptions(option);
         }
 
         public static void DrawScreen()
         {
-            Extremo(30);
-            Meio(15);
-            Extremo(30);
-        }
-        public static void Extremo(int tam)
-        {
             Console.Write("+");
-            for (int i = 0; i < tam; i++)
+            for (int i = 0; i <= 38; i++)
             {
                 Console.Write("-");
             }
             Console.Write("+");
-            Console.Write(Environment.NewLine);
-        }
-        public static void Meio(int tam)
-        {
-            for (int lines = 0; lines <= tam; lines++)
+            Console.Write("\n");
+
+            for (int lines = 0; lines <= 10; lines++)
             {
                 Console.Write("|");
-                for (int i = 0; i < 30; i++)
+                for (int i = 0; i <= 38; i++)
                 {
                     Console.Write(" ");
                 }
                 Console.Write("|");
-                Console.Write(Environment.NewLine);
+                Console.Write("\n");
             }
+
+            Console.Write("+");
+            for (int i = 0; i <= 38; i++)
+            {
+                Console.Write("-");
+            }
+            Console.Write("+");
         }
+
         public static void WriteOptions()
         {
             Console.SetCursorPosition(3, 2);
@@ -54,26 +55,26 @@ namespace EditorHtml
             Console.SetCursorPosition(3, 4);
             Console.WriteLine("Selecione uma opção abaixo");
             Console.SetCursorPosition(3, 6);
-            Console.WriteLine("1 - Novo Arquivo");
+            Console.WriteLine("1 - Novo arquivo");
             Console.SetCursorPosition(3, 7);
             Console.WriteLine("2 - Abrir");
             Console.SetCursorPosition(3, 9);
             Console.WriteLine("0 - Sair");
             Console.SetCursorPosition(3, 10);
-            Console.WriteLine("Opção: ");
-            Console.SetCursorPosition(11, 10);
+            Console.Write("Opção: ");
         }
-        public static void HandleMenuOption(int option)
+
+        public static void HandleMenuOptions(short option)
         {
             switch (option)
             {
-
+                case 1: Editor.Show(); break;
+                case 2: Viewer.Show(""); break;
                 case 0:
-                    Console.Clear();
-                    Environment.Exit(0);
-                    break;
-                case 1: Console.WriteLine("Editor"); break;
-                case 2: Console.WriteLine("View"); break;
+                    {
+                        Console.Clear();
+                        Environment.Exit(0); break;
+                    }
                 default: Show(); break;
             }
         }
